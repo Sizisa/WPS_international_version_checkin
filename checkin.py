@@ -26,7 +26,7 @@ def checkin(sid,sckey):
     
     r1=requests.post(url=checkUrl,json=dataJson).text
     result=json.loads(r1)
-    print('检查签到返回信息'+result)
+    print('检查签到返回信息'+r1)
     if result['code']==0 and result['is_checkined_today']==1:
         send(sckey,'WPS国际版签到成功','签到成功')
     else:
