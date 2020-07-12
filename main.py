@@ -10,7 +10,7 @@ def msgFormat(username,num,flag):
         +'\t>`已签到 '+str(num)+' 天`\n'\
         +'\t\n'\
         +'\t>`今天已签到：'+flag+'`\n'\
-        +'\t\n'
+        +'\t\n'+''
     return str
 
 def send(sckey,title,msg):
