@@ -18,7 +18,7 @@ def checkin(username,password,sckey):
     #登录
     loginUrl='https://account.wps.com/p/signin'
     headers={'Referer':'https://account.wps.com/framelogin?cb=https%3A%2F%2Fwww.wps.com%2Fmaca'}
-    data={'cb': 'https://www.wps.com/mac/','from': 'login','source': 'web','account': username,'password': password,'keeponline': 1}
+    data={'cb': 'https://www.wps.com/mac/','from': 'login','source': 'ios','account': username,'password': password,'keeponline': 1}
     r=requests.post(url=loginUrl,headers=headers,data=data)
     if r.text.find('result')!=-1 and json.loads(r.text)['result']=='ok':
         print('登录返回cookies：')
