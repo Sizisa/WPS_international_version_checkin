@@ -1,7 +1,7 @@
 import checkin
 import os
 import requests
-
+  
 def msgFormat(username,num,flag):
     str='----\n'\
         +'* 用户'+'1'+'\n'\
