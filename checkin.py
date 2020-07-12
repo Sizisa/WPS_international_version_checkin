@@ -22,8 +22,8 @@ def checkin(username,password,sckey):
     r=requests.post(url=loginUrl,headers=headers,data=data)
     if r.text.find('result')!=-1 and json.loads(r.text)['result']=='ok':
         print('登录返回cookies：')
-        print(r.cookies.items())
-        sid=r.cookies.items()[2][1]
+        print(r.cookies)
+        sid=r.cookies['wps_sid']
         print('登录成功，sid='+sid)
     else:
         send(sckey,'WPS国际版签到失败','登录失败'+r.text)
