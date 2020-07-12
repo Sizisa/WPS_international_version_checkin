@@ -21,6 +21,7 @@ def checkin(username,password,sckey):
     data={'cb': 'https://www.wps.com/mac/','from': 'login','source': 'web','account': username,'password': password,'keeponline': 1}
     r=requests.post(url=loginUrl,headers=headers,data=data)
     if r.text.find('result')!=-1 and json.loads(r.text)['result']=='ok':
+        print('登录cookies：'+r.cookies.items())
         sid=r.cookies.items()[2][1]
         print('登录成功，sid='+sid)
     else:
