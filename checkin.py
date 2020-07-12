@@ -3,11 +3,9 @@ import requests
 import time
 import json
 
-def send(sckey,title,msg):
-    url='http://sc.ftqq.com/%s.send'%(sckey)
-    data={'text':title,'desp':msg}
-    r=requests.post(url=url,data=data)
-    print('server酱返回信息：'+r.text)
+
+
+
 
 
 
@@ -26,8 +24,8 @@ def checkin(username,password,sckey):
         sid=r.cookies['wps_sid']
         print('登录成功，sid='+sid)
     else:
-        send(sckey,'WPS国际版签到失败','登录失败'+r.text)
-        return
+        #send(sckey,'WPS国际版签到失败','登录失败'+r.text)
+        return (0,'登录失败')
 
 
     #签到
@@ -45,9 +43,11 @@ def checkin(username,password,sckey):
     result=json.loads(r1)
     print('检查签到返回信息'+r1)
     if result['code']==0 and result['is_checkined_today']==1:
-        send(sckey,'WPS国际版签到成功','签到成功')
+        return (1,str(result['consecutive_checkin_days']))
+        #send(sckey,'WPS国际版签到成功','签到成功')
     else:
-        send(sckey,'WPS国际版签到失败',r1)
+        return (0,r1)
+        #send(sckey,'WPS国际版签到失败',r1)
         
     
 

@@ -1,9 +1,37 @@
 import checkin
 import os
 
-def wpsCheckin(username,password,sckey):
-    print('WPS国际版开始签到')
-    checkin.checkin(username,password,sckey)
+def msgFormat(username,num,flag):
+    str='----\n'\
+        +'* 用户'+'1'+'\n'\
+        +'\t> `用户名：'+username+'`\n'\
+        +'\t\n'\
+        +'\t>`已签到 '+str(num)+' 天`\n'\
+        +'\t\n'\
+        +'\t>`今天已签到：'+flag+'`\n'\
+        +'\t\n'
+    return str
+
+def send(sckey,title,msg):
+    url='http://sc.ftqq.com/%s.send'%(sckey)
+    data={'text':title,'desp':msg}
+    r=requests.post(url=url,data=data)
+    print('server酱返回信息：'+r.text)
+
+
+def wpsCheckin(usernames,password,sckey):
+    string=''
+    usernames=usernames.split('#')
+    print('------------WPS国际版开始签到------------')
+    for i,username in enumerate(usernames):
+        print('===========为第'+(i+1)+'个用户签到，用户名：'+username+'============')
+        (flag,num)=checkin.checkin(username,password,sckey)
+        if flag==1:
+            string+=msgFormat(username,num,'是')
+        elif flag==0:
+            string+=msgFormat(username,num,'否')
+        print('========================================')
+    send(sckey,'WPS国际版签到通知',string)
 
 if __name__ == "__main__":
     username = os.environ['username']
