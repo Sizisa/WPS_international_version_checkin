@@ -9,8 +9,23 @@ def send(sckey,title,msg):
     r=requests.post(url=url,data=data)
     print('server酱返回信息：'+r.text)
 
-def checkin(sid,sckey):
+
+
+
+def checkin(username,password,sckey):
     nowtime=int(time.time())
+
+    #登录
+    loginUrl='https://account.wps.com/p/signin'
+    headers={'Referer':'https://account.wps.com/framelogin?cb=https%3A%2F%2Fwww.wps.com%2Fmaca'}
+    data={'cb': 'https://www.wps.com/mac/','from': 'login','source': 'web','account': username,'password': password,'keeponline': 1}
+    r=requests.post(url=loginUrl,headers=headers,data=data)
+    if r.text.find('result')!=-1 and json.loads(r.text)['result']=='ok':
+        sid=r.cookies.items()[2][1]
+        print('登录成功，sid='+sid)
+    else:
+        send(sckey,'WPS国际版签到失败','登录失败'+r.text)
+        return
 
 
     #签到

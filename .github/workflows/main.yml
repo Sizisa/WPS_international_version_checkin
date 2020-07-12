@@ -31,5 +31,6 @@ jobs:
       run: python3 main.py
       
       env:
-        sid: ${{ secrets.SID }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
         sckey: ${{ secrets.SCKEY }}
