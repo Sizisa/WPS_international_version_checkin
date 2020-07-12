@@ -30,7 +30,8 @@ def checkin(sid,sckey):
     if result['code']==0 and result['is_checkined_today']==1:
         send(sckey,'WPS国际版签到成功','签到成功')
     else:
-        send(sckey,'WPS国际版签到失败',r)
+        send(sckey,'WPS国际版签到失败',r1)
+        
     
 
 
