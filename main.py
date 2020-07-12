@@ -1,5 +1,6 @@
 import checkin
 import os
+import requests
 
 def msgFormat(username,num,flag):
     str='----\n'\
@@ -24,7 +25,7 @@ def wpsCheckin(usernames,password,sckey):
     usernames=usernames.split('#')
     print('------------WPS国际版开始签到------------')
     for i,username in enumerate(usernames):
-        print('===========为第'+(i+1)+'个用户签到，用户名：'+username+'============')
+        print('===========为第'+str(i+1)+'个用户签到，用户名：'+username+'============')
         (flag,num)=checkin.checkin(username,password,sckey)
         if flag==1:
             string+=msgFormat(username,num,'是')
