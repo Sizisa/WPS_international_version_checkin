@@ -39,4 +39,5 @@ if __name__ == "__main__":
     password = os.environ['password']
     sckey = os.environ['sckey']
     
+    
     wpsCheckin(username,password,sckey)
