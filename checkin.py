@@ -11,7 +11,7 @@ import json
 
 
 def checkin(username,password,sckey):
-    nowtime=int(time.time())+43200
+    nowtime=int(time.time())
 
     #登录
     loginUrl='https://account.wps.com/p/signin'
