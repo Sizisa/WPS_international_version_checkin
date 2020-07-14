@@ -6,10 +6,6 @@ import json
 
 
 
-
-
-
-
 def checkin(username,password,sckey):
     nowtime=int(time.time())
 
