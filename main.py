@@ -12,6 +12,7 @@ def msgFormat(i,username,num,flag):
         +'\t>`今天已签到：'+flag+'`\n'\
         +'\t\n'
     return string
+    
 
 def send(sckey,title,msg):
     url='http://sc.ftqq.com/%s.send'%(sckey)
