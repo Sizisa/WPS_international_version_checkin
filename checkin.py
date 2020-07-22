@@ -7,6 +7,8 @@ import json
 
 
 def checkin(username,password,sckey):
+
+    checkinFlag=False
     nowtime=int(time.time())
 
     #登录
@@ -23,6 +25,16 @@ def checkin(username,password,sckey):
         #send(sckey,'WPS国际版签到失败','登录失败'+r.text)
         return (0,'登录失败')
 
+    #检查今天是否签到
+    checkUrl='https://micro.api.wps.com/checkin/everyDayCheckinInfo?wps_sid=%s'%sid
+    dataJson={'client_time':nowtime}
+    
+    r1=requests.post(url=checkUrl,json=dataJson).text
+    result=json.loads(r1)
+    print('检查签到返回信息'+r1)
+    if result['code']==0 and result['is_checkined_today']==1:
+        checkinFlag=True
+        return (0,'error')
 
     #签到
     checkinUrl='https://micro.api.wps.com/task/DispatchTask?wps_sid=%s&token=AXEFASLFKSLP&client_time=%s'%(sid,nowtime)
