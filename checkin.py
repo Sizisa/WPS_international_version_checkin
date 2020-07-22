@@ -31,7 +31,7 @@ def checkin(username,password,sckey):
 
 
     #检查是否签到成功
-    #sid=f8953d8cf22c595e93b9eeb86cfa8ea29f67864900070bdfae@usw2
+    
     checkUrl='https://micro.api.wps.com/checkin/everyDayCheckinInfo?wps_sid=%s'%sid
     dataJson={'client_time':nowtime}
     
