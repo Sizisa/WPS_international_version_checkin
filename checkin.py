@@ -25,7 +25,7 @@ def checkin(username,password,sckey):
 
     #检查今天是否签到
     checkUrl='https://micro.api.wps.com/checkin/everyDayCheckinInfo?wps_sid=%s'%sid
-    dataJson={'client_time':nowtime}
+    dataJson={'client_time':nowtime,'timezone_offset':-480}
     
     r1=requests.post(url=checkUrl,json=dataJson).text
     result=json.loads(r1)
@@ -43,7 +43,7 @@ def checkin(username,password,sckey):
     #检查是否签到成功
     
     checkUrl='https://micro.api.wps.com/checkin/everyDayCheckinInfo?wps_sid=%s'%sid
-    dataJson={'client_time':nowtime}
+    dataJson={'client_time':nowtime,'timezone_offset':-480}
     
     r1=requests.post(url=checkUrl,json=dataJson).text
     result=json.loads(r1)
