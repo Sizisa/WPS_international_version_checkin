@@ -4,8 +4,6 @@ import time
 import json
 
 
-
-
 def checkin(username,password,sckey):
 
     checkinFlag=False
