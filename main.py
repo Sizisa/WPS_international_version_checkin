@@ -23,17 +23,21 @@ def send(sckey,title,msg):
 
 def wpsCheckin(usernames,password,sckey):
     string=''
+    badFlag=False
     usernames=usernames.split('#')
     print('------------WPS国际版开始签到------------')
     for i,username in enumerate(usernames):
         print('===========为第'+str(i+1)+'个用户签到，用户名：'+username+'============')
         (flag,num)=checkin.checkin(username,password,sckey)
         if flag==1:
+            pass
             string+=msgFormat(i+1,username,num,'是')
         elif flag==0:
+            badFlag=True
             string+=msgFormat(i+1,username,num,'否')
         print('========================================')
-    send(sckey,'WPS国际版签到通知',string)
+    if badFlag==True:
+        send(sckey,'WPS国际版签到通知',string)
 
 if __name__ == "__main__":
     username = os.environ['username']
