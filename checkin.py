@@ -21,6 +21,7 @@ def checkin(username,password,sckey):
         print('登录成功，sid='+sid)
     else:
         #send(sckey,'WPS国际版签到失败','登录失败'+r.text)
+        print(r.text)
         return (0,'登录失败')
 
     #检查今天是否签到
