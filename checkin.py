@@ -10,7 +10,7 @@ def checkin(username,password,sckey):
     nowtime=int(time.time())
 
     #登录
-    url = "https://account.wps.com/p/signin"
+    loginurl = "https://account.wps.com/p/signin"
 
     payload = 'cb=https%3A//www.wps.com/phone/&frame=1&from=mobilelogin&source=phone&account=s1@sgv5.uu.me&password=147258369.&keeponline=1'
     headers = {
@@ -28,7 +28,7 @@ def checkin(username,password,sckey):
     }
 
     #response = requests.request("POST", url, headers=headers, data = payload)
-    r=requests.post(url=loginUrl,headers=headers,data=payload)
+    r=requests.post(url=loginurl,headers=headers,data=payload)
     if r.text.find('result')!=-1 and json.loads(r.text)['result']=='ok':
         print('登录返回cookies：')
         print(r.cookies)
