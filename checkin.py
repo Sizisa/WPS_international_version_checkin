@@ -48,7 +48,7 @@ def checkin(username,password,sckey):
     print('检查签到返回信息'+r1)
     if result['code']==0 and result['is_checkined_today']==1:
         checkinFlag=True
-        return (0,'error')
+        #return (0,'error')
 
     #签到
     checkinUrl='https://micro.api.wps.com/task/DispatchTask?wps_sid=%s&token=AXEFASLFKSLP&client_time=%s&timezone_offset=-480'%(sid,nowtime)
