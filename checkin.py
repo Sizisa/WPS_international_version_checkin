@@ -10,10 +10,25 @@ def checkin(username,password,sckey):
     nowtime=int(time.time())
 
     #登录
-    loginUrl='https://account.wps.com/p/signin'
-    headers={'Referer':'https://account.wps.com/framelogin?cb=https%3A%2F%2Fwww.wps.com%2Fmaca'}
-    data={'cb': 'https://www.wps.com/mac/','from': 'login','source': 'ios','account': username,'password': password,'keeponline': 1}
-    r=requests.post(url=loginUrl,headers=headers,data=data)
+    url = "https://account.wps.com/p/signin"
+
+    payload = 'cb=https%3A//www.wps.com/phone/&frame=1&from=mobilelogin&source=phone&account=s1@sgv5.uu.me&password=147258369.&keeponline=1'
+    headers = {
+    'Host': 'account.wps.com',
+    'Connection': 'keep-alive',
+    'Accept': 'application/json',
+    'X-Requested-With': 'XMLHttpRequest',
+    'User-Agent': 'Mozilla/5.0 (Linux; Android 10; MI 9 Build/QKQ1.190825.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/84.0.4147.89 Mobile Safari/537.36',
+    'Origin': 'https://account.wps.com',
+    'Referer': 'https://account.wps.com/mobilelogin?cb=https%3A%2F%2Fwww.wps.com%2Fphone%2F&frame=1',
+    'Accept-Encoding': 'gzip, deflate',
+    'Accept-Language': 'zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+    'Content-Type': 'application/x-www-form-urlencoded',
+    'Cookie': 'uzone=US; ulocale=en-US; wps_sid=V02SSY1lNa5RLw0Z859ryY1S4_7mnGM00a9f6bc900070bdfae@usw2'
+    }
+
+    #response = requests.request("POST", url, headers=headers, data = payload)
+    r=requests.post(url=loginUrl,headers=headers,data=payload)
     if r.text.find('result')!=-1 and json.loads(r.text)['result']=='ok':
         print('登录返回cookies：')
         print(r.cookies)
